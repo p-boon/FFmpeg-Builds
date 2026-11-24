@@ -57,6 +57,7 @@ ffbuild_depends() {
     echo openjpeg
     echo openmpt
     echo rav1e
+    echo rpi
     echo rubberband
     echo rustdedup
     echo schannel

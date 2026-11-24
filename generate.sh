@@ -145,6 +145,12 @@ for addin in "${ADDINS[@]}"; do
 )
 done
 
+source "variants/${TARGET}-${VARIANT}.sh"
+
+for addin in ${ADDINS[*]}; do
+    source "addins/${addin}.sh"
+done
+
 # Whenever wine is used it would create new prefix in every stage. While deps
 # stages does not end up in final image layers, they still exist in build cache.
 # Use single shared wine prefix to avoid duplicating both work and layers.
@@ -194,12 +200,6 @@ while true; do
             exec_dockerstage "$STAGE"
         fi
     done
-done
-
-source "variants/${TARGET}-${VARIANT}.sh"
-
-for addin in ${ADDINS[*]}; do
-    source "addins/${addin}.sh"
 done
 
 COMBINELAYER="combine-layer"

@@ -1,23 +1,14 @@
-# FFmpeg Static Auto-Builds
+# FFmpeg-builds with support for RPI
 
-Static Windows (x86_64) and Linux (x86_64) Builds of ffmpeg master and latest release branch.
+This fork includes support for building FFmpeg with RPI patches.
 
-Windows builds are targetting Windows 7 and newer, provided UCRT is installed.
-The minimum supported version is Windows 10 22H2, no guarantees on anything older.
+Build image with:
+* `./makeimage.sh linuxarm64 gpl 7.1 rpi`
 
-Linux builds are targetting RHEL/CentOS 8 (glibc-2.28 + linux-4.18) and anything more recent.
+Build FFmpeg with:
+* `FFMPEG_REPO_OVERRIDE=https://github.com/RPi-Distro/ffmpeg.git GIT_BRANCH_OVERRIDE=pios/8%7.1.5-0+deb13u1+rpt1 ./build.sh linuxarm64 gpl 7.1 rpi`
 
-## Auto-Builds
-
-Builds run daily at 12:00 UTC (or GitHubs idea of that time) and are automatically released on success.
-
-**Auto-Builds run ONLY for win(arm)64 and linux(arm)64. There are no win32/x86 auto-builds, though you can produce win32 builds yourself following the instructions below.**
-
-### Release Retention Policy
-
-- The last build of each month is kept for two years.
-- The last 14 daily builds are kept.
-- The special "latest" build floats and provides consistent URLs always pointing to the latest build.
+Workflows are disabled on this repo.
 
 ## Package List
 

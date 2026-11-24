@@ -37,8 +37,10 @@ cat <<EOF >"$BUILD_SCRIPT"
     cd /ffbuild
     rm -rf ffmpeg prefix
 
-    git clone --filter=blob:none --branch='$GIT_BRANCH' '$FFMPEG_REPO' ffmpeg
+    git clone --filter=blob:none --depth=1 --branch='$GIT_BRANCH' '$FFMPEG_REPO' ffmpeg
     cd ffmpeg
+    
+    find . -type f -name '*.patch' -exec patch -p 1 -i {} \;
 
     ./configure --prefix=/ffbuild/prefix --pkg-config-flags="--static" \$FFBUILD_TARGET_FLAGS \$FF_CONFIGURE \
         --extra-cflags="\$FF_CFLAGS" --extra-cxxflags="\$FF_CXXFLAGS" --extra-libs="\$FF_LIBS" \
